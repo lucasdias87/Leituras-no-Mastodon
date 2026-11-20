@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Leituras no Mastodon</title>
+  <!-- Estilos da página -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>Leituras no Mastodon</h1>
+  <p class="sub">Busque um livro, diga até onde leu e compartilhe na sua instância. Sem login e sem cadastro.</p>
+
+  <!-- Área de avisos e erros (aparece só quando há mensagem) -->
+  <div id="msg" hidden role="status"></div>
+
+  <!-- Passo 1: busca do livro no Open Library -->
+  <section>
+    <h2>1. Qual livro?</h2>
+    <form id="fSearch" class="bar">
+      <input id="q" required placeholder="Título, autor ou ISBN" aria-label="Buscar livro">
+      <button>Buscar</button>
+    </form>
+    <!-- Os resultados da busca são inseridos aqui pelo script.js -->
+    <div id="res"></div>
+  </section>
+
+  <!-- Passo 2: progresso da leitura e opinião (escondido até escolher um livro) -->
+  <section id="step2" hidden>
+    <h2>2. Como está a leitura?</h2>
+
+    <!-- Livro escolhido: capa, título e autor -->
+    <div class="sel">
+      <img id="cover" alt="">
+      <div>
+        <b id="bt"></b>
+        <div class="mut" id="ba"></div>
+      </div>
+    </div>
+
+    <!-- Escolha entre informar página ou porcentagem -->
+    <label for="mode">Informar progresso por</label>
+    <select id="mode">
+      <option value="pagina">Página</option>
+      <option value="percent">Porcentagem</option>
+    </select>
+
+    <!-- Campos do modo "Página" -->
+    <div id="byPage" class="row">
+      <div><label for="pg">Página atual</label><input id="pg" type="number" min="0"></div>
+      <div><label for="tot">Total de páginas</label><input id="tot" type="number" min="1"></div>
+    </div>
+
+    <!-- Campo do modo "Porcentagem" -->
+    <div id="byPct" hidden>
+      <label for="pc">Porcentagem lida (0 a 100)</label>
+      <input id="pc" type="number" min="0" max="100">
+    </div>
+
+    <label for="fb">Sua opinião até aqui</label>
+    <textarea id="fb" maxlength="350" placeholder="O que está achando?"></textarea>
+  </section>
+
+  <!-- Passo 3: texto final e compartilhamento (escondido até escolher um livro) -->
+  <section id="step3" hidden>
+    <h2>3. Compartilhe</h2>
+
+    <label for="out">Texto da publicação (você pode editar)</label>
+    <textarea id="out"></textarea>
+
+    <!-- Qual link vai no final do texto: a imagem da capa, a página do livro ou nenhum -->
+    <label for="lnk">Link na publicação</label>
+    <select id="lnk">
+      <option value="capa">Link da capa</option>
+      <option value="livro">Página do livro (prévia com capa)</option>
+      <option value="nenhum">Sem link</option>
+    </select>
+
+    <!-- Instância do usuário + botão de compartilhar -->
+    <label for="inst">Sua instância</label>
+    <div class="bar">
+      <input id="inst" list="dl" autocomplete="off" autocapitalize="none" placeholder="mastodon.social">
+      <button id="go">Compartilhar</button>
+    </div>
+    <!-- Sugestões de instâncias (preenchida pelo script.js) -->
+    <datalist id="dl"></datalist>
+    <!-- Atalhos para as instâncias já usadas (preenchido pelo script.js) -->
+    <div id="chips" class="chips" aria-label="Instâncias salvas"></div>
+
+    <div class="actions">
+      <button class="sec" id="copy">Copiar texto</button>
+      <button class="sec" id="dl-cover">Baixar capa</button>
+    </div>
+    <p class="mut">O compartilhamento leva só texto, então a capa entra como link. Se a prévia da imagem não aparecer na sua instância, troque para "Página do livro" ou baixe a capa e anexe ao publicar.</p>
+  </section>
+</main>
+
+<!-- Lógica da página -->
+<script src="script.js"></script>
+</body>
+</html>

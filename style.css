@@ -1,0 +1,207 @@
+/* ==========================================================
+   Leituras no Mastodon - estilos
+   ========================================================== */
+
+/* ---------- Cores do tema claro (padrão) ---------- */
+:root {
+  --bg: #eceee8;     /* fundo da página */
+  --fg: #1c2926;     /* texto principal */
+  --mut: #5f6f6a;    /* texto secundário */
+  --card: #f8f9f6;   /* fundo das seções */
+  --bd: #cfd6cf;     /* bordas */
+  --ac: #1d6b62;     /* cor de destaque (botões, foco) */
+  --acfg: #fff;      /* texto sobre a cor de destaque */
+  --err: #a3321f;    /* mensagens de erro */
+}
+
+/* ---------- Cores do tema escuro (segue o sistema do usuário) ---------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111716;
+    --fg: #e4ebe7;
+    --mut: #8fa19b;
+    --card: #1a2220;
+    --bd: #2f3d39;
+    --ac: #5fc4b4;
+    --acfg: #0c1514;
+    --err: #ff8f7a;
+  }
+}
+
+/* ---------- Base ---------- */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* Coluna central, boa para leitura e para celular */
+main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 28px 18px 64px;
+}
+
+/* ---------- Títulos ---------- */
+h1 {
+  font: 600 2rem/1.15 "Iowan Old Style", Georgia, serif;
+  margin: 0 0 6px;
+}
+
+h2 {
+  font: 600 1.15rem/1.3 "Iowan Old Style", Georgia, serif;
+  margin: 0 0 10px;
+}
+
+.sub { color: var(--mut); margin: 0 0 24px; }
+
+/* ---------- Seções (cada passo) ---------- */
+section {
+  background: var(--card);
+  border: 1px solid var(--bd);
+  border-radius: 10px;
+  padding: 18px;
+  margin-bottom: 16px;
+}
+
+/* ---------- Formulários ---------- */
+label {
+  display: block;
+  font-size: .9rem;
+  color: var(--mut);
+  margin: 12px 0 4px;
+}
+
+input, select, textarea, button {
+  font: inherit;
+  color: inherit;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 9px 11px;
+  background: var(--bg);
+  border: 1px solid var(--bd);
+  border-radius: 6px;
+}
+
+input[type=checkbox] { width: auto; margin-right: 6px; }
+
+textarea { resize: vertical; min-height: 90px; }
+
+/* Foco visível para quem navega pelo teclado */
+:focus-visible { outline: 3px solid var(--ac); outline-offset: 2px; }
+
+/* ---------- Botões ---------- */
+button {
+  cursor: pointer;
+  border: 0;
+  border-radius: 6px;
+  padding: 10px 16px;
+  background: var(--ac);
+  color: var(--acfg);
+  font-weight: 600;
+}
+
+/* Botão secundário (contorno) */
+button.sec {
+  background: transparent;
+  color: var(--fg);
+  border: 1px solid var(--bd);
+}
+
+/* ---------- Layouts auxiliares ---------- */
+.row { display: flex; gap: 10px; }          /* campos lado a lado */
+.row > * { flex: 1; }
+
+.bar { display: flex; gap: 8px; }           /* campo + botão na mesma linha */
+.bar input { flex: 1; }
+.bar button { flex: none; }
+
+.mut { color: var(--mut); font-size: .9rem; }
+
+/* ---------- Resultados da busca ---------- */
+.hit {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  color: var(--fg);
+  border: 1px solid var(--bd);
+  margin-top: 8px;
+  padding: 8px;
+  font-weight: 400;
+}
+
+.hit:hover { border-color: var(--ac); }
+
+/* Miniatura da capa (ou espaço vazio quando não há capa) */
+.hit img, .ph {
+  width: 44px;
+  height: 66px;
+  object-fit: cover;
+  border-radius: 3px;
+  background: var(--bd);
+  flex: none;
+}
+
+.hit b { display: block; }
+
+/* ---------- Livro escolhido ---------- */
+.sel { display: flex; gap: 14px; align-items: center; }
+
+.sel img {
+  width: 80px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px #0003;
+}
+
+/* ---------- Mensagens de aviso e erro ---------- */
+#msg {
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  border-left: 4px solid var(--ac);
+  background: var(--card);
+}
+
+#msg.err { border-color: var(--err); color: var(--err); }
+
+/* ---------- Texto da publicação ---------- */
+#out {
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: .92rem;
+  min-height: 170px;
+}
+
+/* ---------- Atalhos de instâncias salvas ---------- */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+
+.chip {
+  display: inline-flex;
+  border: 1px solid var(--bd);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.chip button {
+  background: transparent;
+  color: var(--fg);
+  padding: 6px 12px;
+  border-radius: 0;
+  font-weight: 500;
+}
+
+.chip button:first-child:hover { background: var(--ac); color: var(--acfg); }
+
+/* Botão "×" para remover a instância */
+.chip .x { padding: 6px 10px; color: var(--mut); }
+
+/* ---------- Botões de ação (copiar, baixar capa) ---------- */
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+
+/* Garante que o atributo "hidden" sempre esconda o elemento */
+[hidden] { display: none !important; }
