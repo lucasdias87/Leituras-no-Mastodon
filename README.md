@@ -2,7 +2,7 @@
 Facilita o compartilhamento de leituras no Mastodon 
 
 
-# Rastreador de Leitura
+
 
 Aplicação web leve e de código aberto para acompanhar o progresso dos seus livros e compartilhar suas atualizações de leitura diretamente no Mastodon.
 
