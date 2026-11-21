@@ -36,6 +36,13 @@ body {
   background: var(--bg);
   color: var(--fg);
   font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+	  background-image: url('img/fundo.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 100vh;
+  margin: 0;
 }
 
 /* Coluna central, boa para leitura e para celular */
